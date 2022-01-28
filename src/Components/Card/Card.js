@@ -4,6 +4,8 @@ import { useQuery, gql } from '@apollo/client';
 import { LOAD_PRODUCTS } from '../graphQL/Querries';
 
 const Card = () => {
+	console.log(LOAD_PRODUCTS);
+
 	const { error, loading, data } = useQuery(LOAD_PRODUCTS);
 
 	useEffect(() => {
