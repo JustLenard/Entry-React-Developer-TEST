@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.sass';
-import NavBar from '../Components/NavBar/NavBar.js';
-import Card from '../Components/Card/Card.js';
+import NavBar from '../components/navBar/NavBar.js';
+import Card from '../components/card/Card.js';
 
 const Home = () => {
 	return (
