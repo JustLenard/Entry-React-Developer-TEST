@@ -1,20 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { useQuery, gql } from '@apollo/client';
-import { LOAD_PRODUCTS } from '../graphQL/querries';
 
-const { error, loading, data } = useQuery(LOAD_PRODUCTS);
-// const [products, setProducts] = useState([]);
-
-// useEffect(() => {
-// 	// console.log(data);
-// 	if (data !== undefined) {
-// 		console.log(data.categories[0].products);
-// 	}
-// }, [data]);
+const getAll = gql`
+	query {
+		categories {
+			name
+			products {
+				id
+				name
+				inStock
+				prices {
+					currency {
+						label
+						symbol
+					}
+					amount
+				}
+				gallery
+			}
+		}
+	}
+`;
 
 export const productsSlice = createSlice({
 	name: 'products',
-	initialState: { value: data },
+	initialState: { value: getAll },
 	reducers: {
 		getProducts: (state, action) => {
 			state.value = action.payload;

@@ -29,17 +29,17 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
-// client.query = {
-// 	query: gql`
-// 		query {
-// 			product(id: "huarache-x-stussy-le") {
-// 				name
-// 				gallery
-// 				id
-// 			}
-// 		}
-// 	`,
-// };
+client.query = {
+	query: gql`
+		query {
+			product(id: "huarache-x-stussy-le") {
+				name
+				gallery
+				id
+			}
+		}
+	`,
+};
 
 const App = () => {
 	return (

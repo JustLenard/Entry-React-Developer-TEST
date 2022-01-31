@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import productsReducer from './features/products';
 
 const store = configureStore({
-	reducer: {},
+	reducer: {
+		products: productsReducer,
+	},
 });
 
 ReactDOM.render(
