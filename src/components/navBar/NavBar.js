@@ -13,7 +13,15 @@ const NavBar = () => {
 				<div>Logo</div>
 			</div>
 			<div className="currency-cart">
-				<div className="currency">$</div>
+				<div className="currency">
+					<select>
+						<option value="$">$</option>
+						<option value="£">£</option>
+						<option value="A$">A$</option>
+						<option value="¥">¥</option>
+						<option value="₽">₽</option>
+					</select>
+				</div>
 				<div className="card">Cart</div>
 			</div>
 		</div>
