@@ -9,12 +9,12 @@ import { useSelector } from 'react-redux';
 const Home = () => {
 	const { error, loading, data } = useQuery(LOAD_PRODUCTS);
 	const [products, setProducts] = useState([]);
+	const newCurrency = useSelector(state => state.products.value);
+
 	useEffect(() => {
-		// console.log(products);
 		if (data !== undefined) {
-			// console.log(data.categories[0].products);
 			setProducts(data.categories[0].products);
-			console.log(products);
+			// console.log(products);
 		}
 	});
 	return (

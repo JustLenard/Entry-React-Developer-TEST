@@ -5,6 +5,8 @@ import { LOAD_PRODUCTS } from '../graphQL/querries';
 import { useSelector } from 'react-redux';
 
 const Card = ({ product }) => {
+	const currency = useSelector(state => state.products.value);
+
 	// const [products, setProducts] = useState([]);
 	// const products = useSelector(state => state.products.value);
 
@@ -15,13 +17,20 @@ const Card = ({ product }) => {
 	// 	}
 	// }, [data]);
 
+	const correctPrice = product.prices.filter(
+		price => price.currency.symbol === currency
+	)[0].amount;
+
 	return (
 		<div id="card">
 			<div>
-				<img class="image" src={product.gallery[0]}></img>
+				<img className="image" src={product.gallery[0]}></img>
 			</div>
 			<div>{product.name}</div>
-			<div>{product.prices[0].amount}</div>
+			<div>
+				{currency}
+				{correctPrice}
+			</div>
 		</div>
 	);
 };
