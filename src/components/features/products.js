@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useQuery, gql } from '@apollo/client';
 
 export const productsSlice = createSlice({
 	name: 'products',

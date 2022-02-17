@@ -4,10 +4,12 @@ import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import productsReducer from './components/features/products';
+import categoryReducer from './components/features/changeCategory';
 
 const store = configureStore({
 	reducer: {
 		products: productsReducer,
+		category: categoryReducer,
 	},
 });
 

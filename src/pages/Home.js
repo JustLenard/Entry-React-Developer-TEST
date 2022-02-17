@@ -10,11 +10,18 @@ const Home = () => {
 	const { error, loading, data } = useQuery(LOAD_PRODUCTS);
 	const [products, setProducts] = useState([]);
 	const newCurrency = useSelector(state => state.products.value);
+	const currentCategory = useSelector(state => state.category.value);
+	console.log('this is the one ', currentCategory);
 
 	useEffect(() => {
 		if (data !== undefined) {
-			setProducts(data.categories[0].products);
-			// console.log(products);
+			// setProducts(data.categories[0].products);
+			// console.log(data.categories);
+			setProducts(
+				data.categories.filter(
+					category => category.name === currentCategory.toLowerCase()
+				)[0].products
+			);
 		}
 	});
 	return (

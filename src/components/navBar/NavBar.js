@@ -1,17 +1,39 @@
 import React from 'react';
 import './NavBar.sass';
 import { changeCurrency } from '../features/products.js';
+import { changeCategory } from '../features/changeCategory';
 import { useDispatch } from 'react-redux';
 
 const NavBar = () => {
 	const dispatch = useDispatch();
 
+	// const handleClick = e => {
+	// 	dispatch(categorySlice(e.target.value));
+	// };
 	return (
 		<div id="navbar">
 			<div className="categories">
-				<div>Women</div>
-				<div>Men</div>
-				<div>Kids</div>
+				<div
+					onClick={e => {
+						dispatch(changeCategory(e.target.textContent));
+					}}
+				>
+					All
+				</div>
+				<div
+					onClick={e => {
+						dispatch(changeCategory(e.target.textContent));
+					}}
+				>
+					Clothes
+				</div>
+				<div
+					onClick={e => {
+						dispatch(changeCategory(e.target.textContent));
+					}}
+				>
+					Tech
+				</div>
 			</div>
 			<div className="logo">
 				<div>Logo</div>
