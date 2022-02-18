@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NavBar.sass';
 import { changeCurrency } from '../features/products.js';
 import { changeCategory } from '../features/changeCategory';
 import { useDispatch } from 'react-redux';
+import Modal from '../modal/Modal';
 
 const NavBar = () => {
 	const dispatch = useDispatch();
+	const [isOpen, setIsOpen] = useState(false);
 
-	// const handleClick = e => {
-	// 	dispatch(categorySlice(e.target.value));
-	// };
 	return (
 		<div id="navbar">
 			<div className="categories">
@@ -52,7 +51,10 @@ const NavBar = () => {
 						<option value="₽">₽</option>
 					</select>
 				</div>
-				<div className="card">Cart</div>
+				<div className="cart" onClick={() => setIsOpen(!isOpen)}>
+					Cart
+					<Modal isOpen={isOpen} />
+				</div>
 			</div>
 		</div>
 	);
