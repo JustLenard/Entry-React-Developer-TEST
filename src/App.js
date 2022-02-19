@@ -9,6 +9,9 @@ import {
 	gql,
 } from '@apollo/client';
 import { ErrorLink, onError } from '@apollo/client/link/error';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Cart from './pages/Cart';
+import PDP from './pages/PDP';
 
 // const errorLink = new onError(({ graphqlErrors, newtworkError }) => {
 // 	if (graphqlErrors) {
@@ -44,7 +47,13 @@ const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Home />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/pdp" element={<PDP />} />
+					<Route path="/cart" element={<Cart />} />
+				</Routes>
+			</BrowserRouter>
 		</ApolloProvider>
 	);
 };

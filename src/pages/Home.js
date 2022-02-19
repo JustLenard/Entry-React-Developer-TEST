@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { LOAD_PRODUCTS } from '../components/graphQL/querries';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const { error, loading, data } = useQuery(LOAD_PRODUCTS);
@@ -31,7 +32,11 @@ const Home = () => {
 			<h1 className="category-name">Category Name</h1>
 			<div className="card-holder">
 				{products.map(product => {
-					return <Card key={product.id} product={product} />;
+					return (
+						<Link to="/pdp" bla={'bla'}>
+							<Card key={product.id} product={product} />
+						</Link>
+					);
 				})}
 			</div>
 		</div>
