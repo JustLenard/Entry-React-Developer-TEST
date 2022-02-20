@@ -3,10 +3,12 @@ import './Card.sass';
 import { useQuery, gql } from '@apollo/client';
 import { LOAD_PRODUCTS } from '../graphQL/querries';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getItemId } from '../features/itemId';
 
 const Card = ({ product }) => {
 	const currency = useSelector(state => state.products.value);
-
+	const dispatch = useDispatch();
 	// const [products, setProducts] = useState([]);
 	// const products = useSelector(state => state.products.value);
 
@@ -20,9 +22,13 @@ const Card = ({ product }) => {
 	const correctPrice = product.prices.filter(
 		price => price.currency.symbol === currency
 	)[0].amount;
-
 	return (
-		<div id="card">
+		<div
+			id="card"
+			onClick={() => {
+				dispatch(getItemId(product.id));
+			}}
+		>
 			<div>
 				<img className="image" src={product.gallery[0]}></img>
 			</div>
