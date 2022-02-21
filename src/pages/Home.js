@@ -33,7 +33,7 @@ const Home = () => {
 			<div className="card-holder">
 				{products.map(product => {
 					return (
-						<Link to="/pdp" bla={'bla'}>
+						<Link to="/pdp" key={product.id}>
 							<Card key={product.id} product={product} />
 						</Link>
 					);

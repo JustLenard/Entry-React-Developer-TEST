@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
+import './PDP.sass';
+import Navbar from '../components/navBar/NavBar';
 
-const PDP = props => {
+const PDP = async => {
 	const itemId = useSelector(state => state.itemId.value);
 	console.log(itemId);
 
@@ -34,41 +36,61 @@ const PDP = props => {
 			}
 		}
 	`;
+	let product;
 	const { error, loading, data } = useQuery(itemInfo);
-
 	useEffect(() => {
 		if (data !== undefined) {
 			console.log(data);
+			// console.log(product.gallery[0]);
+
+			// console.log(product.gallery[0]);
+			product = data.product;
+			console.log(product);
 		}
 	}, [data]);
-	return (
-		<div className="PDP-container">
-			<div className="small-photos">
-				<div className="small-photo">1</div>
-				<div className="small-photo">1</div>
-				<div className="small-photo">1</div>
-			</div>
-			<div className="big-photo">Big Photo</div>
-			<div className="pdp-info">
-				<p className="pdp-name">Name</p>
-				<div className="pdp-size">
-					<p>Size</p>
-					<div className="sizes">
-						<div>1</div>
-						<div>1</div>
-						<div>1</div>
-						<div>L</div>
+	// if (product === null || product === undefined) return null;
+	if (product === undefined) {
+		return null;
+	} else {
+		return (
+			<>
+				<Navbar />
+				<div className="PDP-container">
+					<div className="small-photos">
+						{product.gallery.map(photo => {
+							return (
+								<img
+									className="small-photo"
+									src={photo}
+									key={photo}
+									alt="photo"
+								/>
+							);
+						})}
+					</div>
+					<div className="big-photo">Big Photo</div>
+					<div className="PDP-info">
+						<p className="PDP-name">Name</p>
+						<div className="PDP-size">
+							<p>Size</p>
+							<div className="sizes">
+								<div>1</div>
+								<div>1</div>
+								<div>1</div>
+								<div>L</div>
+							</div>
+						</div>
+						<div className="PDP-price">
+							<p>Price</p>
+							<p>600</p>
+						</div>
+						<div className="add-to-cart-btn">Add to Cart</div>
+						<p>Long ass description</p>
 					</div>
 				</div>
-				<div className="pdp-price">
-					<p>Price</p>
-					<p>600</p>
-				</div>
-				<div className="add-to-cart-btn">Add to Cart</div>
-				<p>Long ass description</p>
-			</div>
-		</div>
-	);
+			</>
+		);
+	}
 };
 
 export default PDP;
