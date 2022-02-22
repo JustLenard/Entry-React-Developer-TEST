@@ -50,7 +50,7 @@ const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/pdp" element={<PDP />} />
+					<Route path="/pdp/:id" element={<PDP />} />
 					<Route path="/cart" element={<Cart />} />
 				</Routes>
 			</BrowserRouter>

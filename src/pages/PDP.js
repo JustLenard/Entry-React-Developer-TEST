@@ -1,55 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import './PDP.sass';
 import Navbar from '../components/navBar/NavBar';
+import { useLocation } from 'react-router-dom';
+import { ITEM_INFO } from '../components/graphQL/querries';
 
 const PDP = async => {
-	const itemId = useSelector(state => state.itemId.value);
-	console.log(itemId);
+	const location = useLocation();
+	const itemId = location.pathname.split('/')[2];
+	const { error, loading, data } = useQuery(ITEM_INFO(itemId));
+	const [product, setProduct] = useState(null);
+	const [hoveredImage, setHoveredImage] = useState('');
 
-	const itemInfo = gql`
-		query {
-			product(id: "${itemId}") {
-				name
-				gallery
-				brand
-				inStock
-				description
-				prices {
-					currency {
-						label
-						symbol
-					}
-					amount
-				}
-				attributes {
-					name
-					id
-					type
-					items {
-						id
-						value
-						displayValue
-					}
-				}
-			}
-		}
-	`;
-	let product;
-	const { error, loading, data } = useQuery(itemInfo);
 	useEffect(() => {
 		if (data !== undefined) {
-			console.log(data);
-			// console.log(product.gallery[0]);
-
-			// console.log(product.gallery[0]);
-			product = data.product;
-			console.log(product);
+			setProduct(data.product);
+			setHoveredImage(data.product.gallery[0]);
 		}
 	}, [data]);
-	// if (product === null || product === undefined) return null;
-	if (product === undefined) {
+	// console.log(product);
+	// console.log(data);
+	if (product === null) {
 		return null;
 	} else {
 		return (
@@ -63,12 +35,15 @@ const PDP = async => {
 									className="small-photo"
 									src={photo}
 									key={photo}
-									alt="photo"
+									alt="Example of the product"
+									onMouseOver={e => {
+										setHoveredImage(e.target.src);
+									}}
 								/>
 							);
 						})}
 					</div>
-					<div className="big-photo">Big Photo</div>
+					<img className="big-photo" src={hoveredImage} />
 					<div className="PDP-info">
 						<p className="PDP-name">Name</p>
 						<div className="PDP-size">
