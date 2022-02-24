@@ -1,5 +1,6 @@
 import React from 'react';
 import './Modal.sass';
+import { Link } from 'react-router-dom';
 
 const Modal = ({ isOpen }) => {
 	if (!isOpen) return null;
@@ -31,7 +32,9 @@ const Modal = ({ isOpen }) => {
 					<p>amount</p>
 				</div>
 				<div className="view-bag-check-out">
-					<button className="view-bag">VIEW BAG</button>
+					<Link to="/cart">
+						<button className="view-bag">VIEW BAG</button>
+					</Link>
 					<button className="check-out">CHECK-OUT</button>
 				</div>
 			</div>

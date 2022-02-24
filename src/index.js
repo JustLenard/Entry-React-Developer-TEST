@@ -5,13 +5,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import productsReducer from './components/features/products';
 import categoryReducer from './components/features/changeCategory';
-import itemIdReducer from './components/features/itemId';
+import cartReducer from './components/features/cart';
 
 const store = configureStore({
 	reducer: {
 		products: productsReducer,
 		category: categoryReducer,
-		itemId: itemIdReducer,
+		cart: cartReducer,
 	},
 });
 

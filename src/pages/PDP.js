@@ -5,6 +5,8 @@ import './PDP.sass';
 import Navbar from '../components/navBar/NavBar';
 import { useLocation } from 'react-router-dom';
 import { ITEM_INFO } from '../components/graphQL/querries';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../components/features/cart.js';
 
 const PDP = () => {
 	const location = useLocation();
@@ -13,6 +15,13 @@ const PDP = () => {
 	const [product, setProduct] = useState(null);
 	const [hoveredImage, setHoveredImage] = useState('');
 	const currency = useSelector(state => state.products.value);
+	const dispatch = useDispatch();
+	// onChange={e => {
+	// 	dispatch(changeCurrency(e.target.value));
+	// }}
+	// console.log(addToCart);
+	const cart = useSelector(state => state.cart.value);
+	console.log(cart);
 
 	useEffect(() => {
 		if (data !== undefined) {
@@ -76,7 +85,21 @@ const PDP = () => {
 								{correctPrice}
 							</p>
 						</div>
-						<div className="add-to-cart-btn">Add to cart</div>
+						<div
+							className="add-to-cart-btn"
+							onClick={() => {
+								dispatch(
+									addToCart({
+										productName: product.name,
+										productBrand: product.brand,
+										productPrice: product.prices,
+										productImage: product.gallery[0],
+									})
+								);
+							}}
+						>
+							Add to cart
+						</div>
 						<p>{product.description}</p>
 					</div>
 				</div>
