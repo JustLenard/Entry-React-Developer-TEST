@@ -94,6 +94,7 @@ const PDP = () => {
 										productBrand: product.brand,
 										productPrice: product.prices,
 										productImage: product.gallery[0],
+										productId: product.id,
 									})
 								);
 							}}
