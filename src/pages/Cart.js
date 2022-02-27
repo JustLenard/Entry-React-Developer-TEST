@@ -7,6 +7,10 @@ const Cart = () => {
 	const cart = useSelector(state => state.cart.value);
 	console.log(cart);
 	const [count, setCount] = useState(1);
+	const currency = useSelector(state => state.products.value);
+	const correctPrice = cart[0].productPrice.filter(
+		price => price.currency.symbol === currency
+	)[0].amount;
 
 	return (
 		<div>
@@ -21,7 +25,11 @@ const Cart = () => {
 						<div className="cart-info">
 							<div>{product.productName}</div>
 							<div>{product.productBrand}</div>
-							<div>{product.productid}Price</div>
+							<div>
+								{product.productid}
+								{currency}
+								{correctPrice}
+							</div>
 						</div>
 						<div className="cart-amount">
 							<div
