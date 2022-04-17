@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import productsReducer from './components/features/products';
-import categoryReducer from './components/features/changeCategory';
-import cartReducer from './components/features/cart';
+import store from './store/';
 
-const store = configureStore({
-	reducer: {
-		products: productsReducer,
-		category: categoryReducer,
-		cart: cartReducer,
-	},
-});
+// const store2 = configureStore({
+// 	reducer: {
+// 		products: productsReducer,
+// 		category: categoryReducer,
+// 		cart: cartReducer,
+// 	},
+// });
+// console.log(store2);
 
 ReactDOM.render(
 	<Provider store={store}>

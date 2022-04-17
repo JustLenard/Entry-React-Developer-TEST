@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 const Card = ({ product }) => {
-	const currency = useSelector(state => state.products.value);
+	const currency = useSelector(state => state.products);
 	const dispatch = useDispatch();
 	// const [products, setProducts] = useState([]);
 	// const products = useSelector(state => state.products.value);

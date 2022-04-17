@@ -10,9 +10,14 @@ import { Link } from 'react-router-dom';
 const Home = () => {
 	const { error, loading, data } = useQuery(LOAD_PRODUCTS);
 	const [products, setProducts] = useState([]);
-	const newCurrency = useSelector(state => state.products.value);
-	const currentCategory = useSelector(state => state.category.value);
-	console.log('this is the one ', currentCategory);
+	const newCurrency = useSelector(state => state.products);
+	const currentCategory = useSelector(state => state.category);
+	const state = useSelector(state => state);
+
+	// console.log(state);
+
+	// console.log('this is current category ', currentCategory);
+	// console.log('this is data', data);
 
 	useEffect(() => {
 		if (data !== undefined) {

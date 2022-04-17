@@ -1,39 +1,22 @@
 import React, { useState } from 'react';
 import './NavBar.sass';
-import { changeCurrency } from '../features/products.js';
-import { changeCategory } from '../features/changeCategory';
 import { useDispatch } from 'react-redux';
 import Modal from '../modal/Modal';
+import { setCategory } from '../../store/actions/category';
+import { setSelectedCurrency } from '../../store/actions/currency';
+import { Link } from 'react-router-dom';
+import Category from './Category';
 
 const NavBar = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
-	// console.log(changeCurrency);
 
 	return (
 		<div id="navbar">
 			<div className="categories">
-				<div
-					onClick={e => {
-						dispatch(changeCategory(e.target.textContent));
-					}}
-				>
-					All
-				</div>
-				<div
-					onClick={e => {
-						dispatch(changeCategory(e.target.textContent));
-					}}
-				>
-					Clothes
-				</div>
-				<div
-					onClick={e => {
-						dispatch(changeCategory(e.target.textContent));
-					}}
-				>
-					Tech
-				</div>
+				<Category text="All" />
+				<Category text="Clothes" />
+				<Category text="Tech" />
 			</div>
 			<div className="logo">
 				<div>Logo</div>
@@ -42,7 +25,8 @@ const NavBar = () => {
 				<div className="currency">
 					<select
 						onChange={e => {
-							dispatch(changeCurrency(e.target.value));
+							console.log('this is selected currency', e.target.value);
+							dispatch(setSelectedCurrency(e.target.value));
 						}}
 					>
 						<option value="$">$</option>
